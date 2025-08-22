@@ -41,6 +41,10 @@ jobs:
               ./k8s/deployment.yaml
           images: |
             'sodreus/goapp:v${{ github.run_number}}'
+      - name: Validacao
+        run: |
+            kubectl get pods
+            kubectl get services
 
       
   
