@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: fabricioveronez/primeira-pipeline-cicd
+        image: sodreus/goapp
         ports:
         - containerPort: 5000
 --- 
