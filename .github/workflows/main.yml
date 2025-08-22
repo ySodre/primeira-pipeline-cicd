@@ -40,7 +40,7 @@ jobs:
           manifests: |
               ./k8s/deployment.yaml
           images: |
-            'sodreus/goapp:v${{ github.run_number}}'
+            sodreus/goapp:v${{ github.run_number}}
       - name: Validacao
         run: |
             kubectl get pods
