@@ -1,6 +1,15 @@
 name: Deploy no Kubernetes
 on:
     workflow_call:
+        inputs:
+            manifests:
+                type: string
+                required: true
+                description: "Arquivos de manifesto para deploy"
+            images:
+                type: string
+                required: true
+                description: "Imagens que serão alteradas nos manifestos"
 jobs:
   deploy-k8s:
     runs-on: ubuntu-latest
@@ -15,10 +24,8 @@ jobs:
       - name: Aplicando o deployment
         uses: Azure/k8s-deploy@v5
         with:
-          manifests: |
-              ./k8s/deployment.yaml
-          images: |
-            sodreus/goapp:v${{ github.run_number}}
+          manifests: ${{inputs.manifests}}
+          images: ${{ inputs.images }}
       - name: Validacao
         run: |
             kubectl get pods
