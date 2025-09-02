@@ -38,11 +38,11 @@ jobs:
     environment: homologacao
     steps:
       - name: Fake Teste
-        run: echo"Fake teste de ambiente ${{ vars.APP_NAMESPACE }}"
+        run: echo "Fake teste de ambiente ${{ vars.APP_NAMESPACE }}"
 
 
   CD-Producao:
-    needs: [CI]
+    needs: [Teste-Ambiente]
     uses: ySodre/primeira-pipeline-cicd/.github/workflows/deploy.yml@main
     with:
       manifests: k8s/deployment.yaml
