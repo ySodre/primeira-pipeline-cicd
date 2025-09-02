@@ -10,9 +10,14 @@ on:
                 type: string
                 required: true
                 description: "Imagens que serão alteradas nos manifestos"
+            enviroment:
+              type: string
+              required: true
+              description: "Nome do ambiente que vai ser utilizado"
 jobs:
   deploy-k8s:
     runs-on: ubuntu-latest
+    enviroment: ${{ inputs.environment }}
     steps:
       - name: Obtendo o código
         uses: actions/checkout@v5.0.0
@@ -26,6 +31,7 @@ jobs:
         with:
           manifests: ${{inputs.manifests}}
           images: ${{ inputs.images }}
+          namespace: ${{ vars.APP_NAMESPACE }}
       - name: Validacao
         run: |
             kubectl get pods
