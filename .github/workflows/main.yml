@@ -35,7 +35,7 @@ jobs:
   Teste-Ambiente:
     needs: [CD-Homologacao]
     runs-on: ubuntu-latest
-    enviroment: homologacao
+    environment: homologacao
     steps:
       - name: Fake Teste
         run: echo"Fake teste de ambiente ${{ vars.APP_NAMESPACE }}"
