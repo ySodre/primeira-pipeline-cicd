@@ -23,7 +23,7 @@ jobs:
         tags: |
           sodreus/goapp:v${{ github.run_number}}
           sodreus/goapp:latest
-  CD-HOMOLOG:
+  CD-Homologacao:
     needs: [CI]
     uses: ySodre/primeira-pipeline-cicd/.github/workflows/deploy.yml@main
     with:
@@ -33,7 +33,7 @@ jobs:
     secrets: inherit
     
   Teste-Ambiente:
-    needs: [CD-HOMOLOG]
+    needs: [CD-Homologacao]
     runs-on: ubuntu-latest
     enviroment: homologacao
     steps:
@@ -41,7 +41,7 @@ jobs:
         run: "Fake teste de ambiente ${{ vars.APP_NAMESPACE }}"
 
 
-  CD-PRODUCAO:
+  CD-Producao:
     needs: [CI]
     uses: ySodre/primeira-pipeline-cicd/.github/workflows/deploy.yml@main
     with:
